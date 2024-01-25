@@ -21,7 +21,7 @@ def validate_user_session(id,token):
 
 
 @csrf_exempt
-def addr(request,id,token):
+def add(request,id,token):
     if not validate_user_session(id,token):
         return JsonResponse({'error':'Please re-login','code':'500'})
     
@@ -49,5 +49,5 @@ def addr(request,id,token):
 
 
 class OrderViewSet(viewsets.ModelViewSet):
-    queryset = Order.objects.all().order_by('name')
+    queryset = Order.objects.all().order_by('product_name')
     serializer_class = OrderSerializer
